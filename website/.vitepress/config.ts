@@ -21,7 +21,7 @@ const hostname: string = env.VITE_HOSTNAME || 'http://localhost:4173';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Keiyoushi",
+  title: "Dejavui",
   description: "An unofficial repository of extensions for Tachiyomi and variants.",
   cleanUrls: true,
   transformHead: (context) => {
@@ -38,18 +38,13 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/keiyoushi/extensions',
+        link: 'https://github.com/dejavui/no-extensions',
         ariaLabel: 'Project GitHub',
-      },
-      {
-        icon: 'discord',
-        link: 'https://discord.gg/3FbCpdKbdY',
-        ariaLabel: 'Discord server',
       },
     ],
     
     editLink: {
-      pattern: 'https://github.com/keiyoushi/keiyoushi.github.io/edit/main/website/:path',
+      pattern: 'https://github.com/dejavui/dejavui.github.io/edit/main/website/:path',
       text: 'Help us improve this page',
     },
 

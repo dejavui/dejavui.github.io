@@ -3,20 +3,17 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: "home"
 
-title: "Keiyoushi"
+title: "Dejavui"
 description: "Extension repository for Mihon and variants."
 
 hero:
-  name: "Keiyoushi"
+  name: "Dejavui"
   text: ""
   tagline: "Extension repository for Mihon and variants."
   actions:
     - theme: "brand"
       text: "Get started"
       link: "/docs/guides/getting-started"
-    - theme: "alt"
-      text: "Need Help?"
-      link: "https://discord.gg/3FbCpdKbdY"
 
 features:
   - title: "Extensions"

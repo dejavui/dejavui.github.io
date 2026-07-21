@@ -1,27 +1,36 @@
 // Copyright (c) The Tachiyomi Open Source Project
 // SPDX-License-Identifier: MPL-2.0
 
-export function simpleLangName(code: string) {
-  if (code === 'all') return 'All'
+export function simpleLangName(code: string | undefined | null) {
+  const normalizedCode = normalizeLanguageCode(code)
+  if (normalizedCode === 'all') return 'All'
 
-  const name = getDisplayLanguageName(code, 'en')
-  return name ? capitalize(name, 'en') : fallbackLanguageName(code)
+  const name = getDisplayLanguageName(normalizedCode, 'en')
+  return name ? capitalize(name, 'en') : fallbackLanguageName(normalizedCode)
 }
 
-export function langName(code: string) {
-  if (code === 'all') return 'All'
+export function langName(code: string | undefined | null) {
+  const normalizedCode = normalizeLanguageCode(code)
+  if (normalizedCode === 'all') return 'All'
 
-  const englishName = getDisplayLanguageName(code, 'en')
-  const nativeName = getDisplayLanguageName(code, code)
+  const englishName = getDisplayLanguageName(normalizedCode, 'en')
+  const nativeName = getDisplayLanguageName(normalizedCode, normalizedCode)
 
   if (englishName && nativeName) {
-    return `${capitalize(englishName, 'en')} - ${capitalize(nativeName, code)}`
+    return `${capitalize(englishName, 'en')} - ${capitalize(nativeName, normalizedCode)}`
   }
 
-  return fallbackLanguageName(code)
+  return fallbackLanguageName(normalizedCode)
+}
+
+function normalizeLanguageCode(code: string | undefined | null) {
+  if (typeof code !== 'string') return ''
+  return code.trim()
 }
 
 function getDisplayLanguageName(code: string, locale: string) {
+  if (!code) return null
+
   try {
     const displayNames = new Intl.DisplayNames([locale], { type: 'language' })
     return displayNames.of(code) ?? null

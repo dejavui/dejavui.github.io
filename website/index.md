@@ -9,7 +9,7 @@ description: "Extension repository for Mihon and variants."
 hero:
   name: "Dejavui"
   text: ""
-  tagline: "Extension repository for Mihon and variants."
+  tagline: "Extension store for Mihon and variants."
   actions:
     - theme: "brand"
       text: "Get started"

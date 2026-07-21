@@ -62,10 +62,11 @@ export default function useExtensionsRepositoryQuery<S = Extension[]>(options: U
   return useQuery<Extension[], Error, S>({
     queryKey: ['extensions'],
     queryFn: async () => {
-      const { data } = await axios.get<Index>(GITHUB_EXTENSION_JSON, { responseType: 'json' })
+      const { data } = await axios.get<Index>(GITHUB_EXTENSION_JSON)
 
       return data.extensionList?.extensions ?? []
     },
+    initialData: () => [],
     refetchOnWindowFocus: false,
     ...options,
   })

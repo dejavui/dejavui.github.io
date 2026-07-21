@@ -35,7 +35,7 @@ export interface SourceGroupData {
 	items: SourceRow[]
 }
 
-const { data: groups, isLoading, isError } = useExtensionsRepositoryQuery({
+const { data: groups, isLoading } = useExtensionsRepositoryQuery({
 	select: (response) => {
 		const groupsMap = new Map<string, SourceRow[]>()
 
@@ -157,8 +157,8 @@ watch(groups, async () => {
 	}
 })
 
-watch([isLoading, isError, loadingInstance], async ([newIsLoading, newIsError]) => {
-	if (!newIsLoading || newIsError) {
+watch([isLoading, loadingInstance], async ([newIsLoading]) => {
+	if (!newIsLoading) {
 		loadingInstance.value?.close()
 	}
 })
@@ -173,11 +173,7 @@ watch([isLoading, isError, loadingInstance], async ([newIsLoading, newIsError]) 
 		:groups="groups ?? []"
 	/>
 	<div class="extensions">
-		<div v-if="isError" class="custom-block danger">
-			<p class="custom-block-title">Error</p>
-			<p>Failed to fetch extensions. Please try again later.</p>
-		</div>
-		<ExtensionList v-else-if="!isLoading" :groups="filteredGroups" />
+		<ExtensionList v-if="!isLoading" :groups="filteredGroups" />
 	</div>
 </template>
 

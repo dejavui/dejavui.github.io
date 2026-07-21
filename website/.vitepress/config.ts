@@ -38,7 +38,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/dejavui/no-extensions',
+        link: 'https://github.com/dejavui/not-extensions',
         ariaLabel: 'Project GitHub',
       },
     ],

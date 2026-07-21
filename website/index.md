@@ -4,7 +4,7 @@
 layout: "home"
 
 title: "Dejavui"
-description: "Extension repository for Mihon and variants."
+description: "Extension store for Mihon and variants."
 
 hero:
   name: "Dejavui"

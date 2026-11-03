@@ -17,7 +17,12 @@ export function langName(code: string | undefined | null) {
   const nativeName = getDisplayLanguageName(normalizedCode, normalizedCode)
 
   if (englishName && nativeName) {
-    return `${capitalize(englishName, 'en')} - ${capitalize(nativeName, normalizedCode)}`
+    const capitalizedEnglishName = capitalize(englishName, 'en')
+    const capitalizedNativeName = capitalize(nativeName, normalizedCode)
+
+    return capitalizedEnglishName === capitalizedNativeName
+      ? capitalizedEnglishName
+      : `${capitalizedEnglishName} - ${capitalizedNativeName}`
   }
 
   return fallbackLanguageName(normalizedCode)
@@ -54,5 +59,10 @@ function fallbackLanguageName(code: string) {
 }
 
 function capitalize(string: string, locale: string) {
-  return string.charAt(0).toLocaleUpperCase(locale) + string.substring(1)
+  try {
+    return string.charAt(0).toLocaleUpperCase(locale) + string.substring(1)
+  }
+  catch {
+    return string.charAt(0).toUpperCase() + string.substring(1)
+  }
 }
